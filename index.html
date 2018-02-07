@@ -6,15 +6,17 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+    <main>
         <button onclick="prev()">back</button>
         <h1 id="subject"></h1>
         <p id="statement"></p>
         <nav>
-            <button>Eens</button>
+            <button onclick="agree()" >Eens</button>
             <button>Geen van beide</button>
-            <button>Oneens</button>
+            <button onclick="disagree()">Oneens</button>
             <button onclick="next()">Sla deze vraag over</button>
         </nav>
+    </main>>
 </body>
     <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
     <script src="js/stemwijzer.js"></script>
