@@ -14,7 +14,7 @@ var scores = {
     'Vrijzinnige Partij': 0,
     'Piratenpartij': 0,
     'Libertarische Partij': 0,
-    'Lokaal in de kamer': 0,
+    'Lokaal in de Kamer': 0,
     'VVD': 0,
     'PvdA': 0,
     'CDA': 0,
@@ -31,7 +31,7 @@ var nxtBtn = document.getElementById("next");
 var agrBtn = document.getElementById("agree");
 var disBtn = document.getElementById("disagree");
 var midBtn = document.getElementById("midway");
-var prevBtn = document.getElementById("prev")
+var prevBtn = document.getElementById("prev");
 
 
 subject.innerHTML = subjects[nr].title;
@@ -44,7 +44,6 @@ document.getElementById("prev").addEventListener("click", function(){
     nr--;
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
-    scores.splice();
 });
 
 document.getElementById("next").addEventListener("click", function(){
@@ -91,4 +90,8 @@ document.getElementById("midway").addEventListener("click", function(){
 });
 
 
-
+function results(){
+    if (nr === 7){
+        console.log("Ik ben klaar");
+    }
+}
