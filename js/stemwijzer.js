@@ -1,66 +1,94 @@
 var nr = 0;
 
-scores =[{party: 'pvv', total: 0},
-         {party: 'vvd', total: 0},
-         {party: 'cda', total: 0},
-         {party: 'd66', total: 0},
-         {party: 'groenlinks', total: 0},
-         {party: 'sp', total: 0},
-         {party: 'pvda', total: 0},
-         {party: 'christenunie', total: 0},
-         {party: 'partij voor de dieren', total: 0},
-         {party: 'sgp', total: 0},
-         {party: 'denk', total: 0},
-         {party: 'forum voor democratie', total: 0},
-         {party: 'lokaal in de kamer', total: 0},
-         {party: 'ondernemerspartij', total: 0},
-         {party: 'vnl', total: 0},
-         {party: 'nieuwe wegen', total: 0},
-         {party: 'de burger beweging', total: 0},
-         {party: 'piratenpartij', total: 0},
-         {party: 'artikel 1', total: 0},
-         {party: 'liberatische partij', total: 0}]
-         
+var scores = {
+    'PVV': 0,
+    'SP': 0,
+    'D66': 0,
+    'GroenLinks': 0,
+    'Partij voor de Dieren"': 0,
+    '50Plus': 0,
+    'VNL': 0,
+    'Nieuwe Wegen': 0,
+    'Forum voor Democratie': 0,
+    'De Burger Beweging': 0,
+    'Vrijzinnige Partij': 0,
+    'Piratenpartij': 0,
+    'Libertarische Partij': 0,
+    'Lokaal in de kamer': 0,
+    'VVD': 0,
+    'PvdA': 0,
+    'CDA': 0,
+    'ChristenUnie': 0,
+    'SGP': 0,
+    'OndernemersPartij': 0,
+    'DENK': 0,
+    'Artikel 1': 0
+};
 
 var subject = document.getElementById('subject');
 var statement = document.getElementById('statement');
-var next = document.getElementById('skip');
-var back = document.getElementById('back');
-var agree = document.getElementById('agree')
-var disagree = document.getElementById('disagree')
-var pro;
-var contra;
+var nxtBtn = document.getElementById("next");
+var agrBtn = document.getElementById("agree");
+var disBtn = document.getElementById("disagree");
+var midBtn = document.getElementById("midway");
+var prevBtn = document.getElementById("prev")
+
 
 subject.innerHTML = subjects[nr].title;
 statement.innerHTML = subjects[nr].statement;
 
-var next = function(event){
-    nr++;
-    subject.innerHTML = subjects[nr].title;
-    statement.innerHTML = subjects[nr].statement;
-}
+console.log(scores);
 
-var prev = function(event){
+
+document.getElementById("prev").addEventListener("click", function(){
     nr--;
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
-}
+    scores.splice();
+});
 
-var agree = function(event){
-    pro = true;
-    if (parties.position === true){
-        scores.total +1;
-    }
+document.getElementById("next").addEventListener("click", function(){
+    nr++
+    subject.innerHTML = subjects[nr].title;
+    statement.innerHTML = subjects[nr].statement
+});
+
+document.getElementById("agree").addEventListener("click", function(){
     nr++;
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
-    console.dir(subjects.parties.position);
-}
+    subjects[nr].parties.forEach(function(party){
+        if (party.position === "pro") {
+            scores[party.name]++;
+        }
+    });
+    console.log(scores);
+});
 
-var disagree = function(event){
-    contra = true;
+document.getElementById("disagree").addEventListener("click", function(){
     nr++
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
-    console.dir(scores);
-}
+    subjects[nr].parties.forEach(function(party){
+        if (party.position === "contra") {
+              scores[party.name]++;
+          }
+      });
+      console.log(scores);
+     });
+
+document.getElementById("midway").addEventListener("click", function(){
+    nr++
+    subject.innerHTML = subjects[nr].title;
+    statement.innerHTML = subjects[nr].statement;
+
+    subjects[nr].parties.forEach(function(party){
+        if (party.position === "ambivalent") {
+            scores[party.name]++;        
+        }    
+    });
+    console.log(scores);
+});
+
+
+
