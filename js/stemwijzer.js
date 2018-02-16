@@ -5,7 +5,7 @@ var scores = {
     'SP': 0,
     'D66': 0,
     'GroenLinks': 0,
-    'Partij voor de Dieren"': 0,
+    'Partij voor de Dieren': 0,
     '50Plus': 0,
     'VNL': 0,
     'Nieuwe Wegen': 0,
@@ -37,8 +37,6 @@ var prevBtn = document.getElementById("prev");
 subject.innerHTML = subjects[nr].title;
 statement.innerHTML = subjects[nr].statement;
 
-console.log(scores);
-
 
 document.getElementById("prev").addEventListener("click", function(){
     nr--;
@@ -47,12 +45,14 @@ document.getElementById("prev").addEventListener("click", function(){
 });
 
 document.getElementById("next").addEventListener("click", function(){
-    nr++
+    nr++;
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement
 });
 
+document.getElementById("agree").addEventListener("click", result); 
 document.getElementById("agree").addEventListener("click", function(){
+    console.log(nr);
     nr++;
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
@@ -65,7 +65,7 @@ document.getElementById("agree").addEventListener("click", function(){
 });
 
 document.getElementById("disagree").addEventListener("click", function(){
-    nr++
+    nr++;
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
     subjects[nr].parties.forEach(function(party){
@@ -77,7 +77,7 @@ document.getElementById("disagree").addEventListener("click", function(){
      });
 
 document.getElementById("midway").addEventListener("click", function(){
-    nr++
+    nr++;
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
 
@@ -89,9 +89,8 @@ document.getElementById("midway").addEventListener("click", function(){
     console.log(scores);
 });
 
-
-function results(){
-    if (nr === 7){
-        console.log("Ik ben klaar");
+function result(){
+    if (nr === 5){
+        document.getElementById("result").innerHTML = scores;
+        }
     }
-}
