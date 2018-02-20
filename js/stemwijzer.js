@@ -1,5 +1,5 @@
 var nr = 0;
-
+var choices = [];
 var scores = {
     'PVV': 0,
     'SP': 0,
@@ -42,18 +42,22 @@ document.getElementById("prev").addEventListener("click", function(){
     nr--;
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
+    choices.pop();
+    console.log(choices);
 });
 
 document.getElementById("next").addEventListener("click", function(){
     nr++;
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement
+    choices.push("skip");
+    console.log(choices);
 });
 
-document.getElementById("agree").addEventListener("click", result); 
 document.getElementById("agree").addEventListener("click", function(){
-    console.log(nr);
     nr++;
+    choices.push("pro");
+    console.log(choices, nr);
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
     subjects[nr].parties.forEach(function(party){
@@ -66,6 +70,8 @@ document.getElementById("agree").addEventListener("click", function(){
 
 document.getElementById("disagree").addEventListener("click", function(){
     nr++;
+    choices.push("contra");
+    console.log(choices);
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
     subjects[nr].parties.forEach(function(party){
@@ -78,6 +84,8 @@ document.getElementById("disagree").addEventListener("click", function(){
 
 document.getElementById("midway").addEventListener("click", function(){
     nr++;
+    choices.push("ambivalent");
+    console.log(choices);
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
 
@@ -88,9 +96,3 @@ document.getElementById("midway").addEventListener("click", function(){
     });
     console.log(scores);
 });
-
-function result(){
-    if (nr === 5){
-        document.getElementById("result").innerHTML = scores;
-        }
-    }
