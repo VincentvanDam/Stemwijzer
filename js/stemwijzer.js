@@ -25,6 +25,7 @@ var scores = {
     'Artikel 1': 0
 };
 
+var startBtn = document.getElementById('start');
 var subject = document.getElementById('subject');
 var statement = document.getElementById('statement');
 var nxtBtn = document.getElementById("next");
@@ -36,7 +37,6 @@ var prevBtn = document.getElementById("prev");
 
 subject.innerHTML = subjects[nr].title;
 statement.innerHTML = subjects[nr].statement;
-
 
 document.getElementById("prev").addEventListener("click", function(){
     nr--;
