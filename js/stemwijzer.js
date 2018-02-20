@@ -43,7 +43,7 @@ document.getElementById("prev").addEventListener("click", function(){
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
     choices.pop();
-    console.log(choices);
+    console.log(choices, nr);
 });
 
 document.getElementById("next").addEventListener("click", function(){
@@ -51,7 +51,7 @@ document.getElementById("next").addEventListener("click", function(){
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement
     choices.push("skip");
-    console.log(choices);
+    console.log(choices, nr);
 });
 
 document.getElementById("agree").addEventListener("click", function(){
@@ -60,12 +60,6 @@ document.getElementById("agree").addEventListener("click", function(){
     console.log(choices, nr);
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
-    subjects[nr].parties.forEach(function(party){
-        if (party.position === "pro") {
-            scores[party.name]++;
-        }
-    });
-    console.log(scores);
 });
 
 document.getElementById("disagree").addEventListener("click", function(){
@@ -74,25 +68,18 @@ document.getElementById("disagree").addEventListener("click", function(){
     console.log(choices);
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
-    subjects[nr].parties.forEach(function(party){
-        if (party.position === "contra") {
-              scores[party.name]++;
-          }
-      });
-      console.log(scores);
      });
 
 document.getElementById("midway").addEventListener("click", function(){
     nr++;
     choices.push("ambivalent");
-    console.log(choices);
+    console.log(choices, nr);
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
-
-    subjects[nr].parties.forEach(function(party){
-        if (party.position === "ambivalent") {
-            scores[party.name]++;        
-        }    
-    });
-    console.log(scores);
 });
+
+function results(){
+    if (choices === )
+}
+
+
