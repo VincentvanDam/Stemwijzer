@@ -1,4 +1,5 @@
 var nr = 0;
+var i = 0;
 var choices = [];
 var scores = [
 	{name: "VVD", points: 0},
@@ -54,53 +55,71 @@ document.getElementById("prev").addEventListener("click", function(){
     statement.innerHTML = subjects[nr].statement;
     choices.pop();
     console.log(choices, nr);
+    var nxtBtn = document.getElementById('next').style.display = "inline-block";
+	var agrBtn = document.getElementById('agree').style.display = "inline-block";
+	var disBtn = document.getElementById('disagree').style.display = "inline-block";
+	var midBtn = document.getElementById('midway').style.display = "inline-block";
 });
 
 document.getElementById("next").addEventListener("click", function(){
-    nr++;
     subject.innerHTML = subjects[nr].title;
-    statement.innerHTML = subjects[nr].statement
+    statement.innerHTML = subjects[nr].statement 
+    nr++;
     console.log(choices, nr);
-    results(); 
+    results();
 });
 
 document.getElementById("agree").addEventListener("click", function(){
-    nr++;
-    choices.push("pro");
-    console.log(choices, nr);
     subject.innerHTML = subjects[nr].title;
     statement.innerHTML = subjects[nr].statement;
-    if(nr === subjects.length){
-        results();
-    }
+    nr++;
+    choices.push("pro");
+    console.log(choices);
+    results();
 });
 
 document.getElementById("disagree").addEventListener("click", function(){
+    subject.innerHTML = subjects[nr].title;
+    statement.innerHTML = subjects[nr].statement;
     nr++;
     choices.push("contra");
     console.log(choices);
-    subject.innerHTML = subjects[nr].title;
-    statement.innerHTML = subjects[nr].statement;
+
+    results();
 });
 
 document.getElementById("midway").addEventListener("click", function(){
+    subject.innerHTML = subjects[nr].title;
+    statement.innerHTML = subjects[nr].statement;
     nr++;
     choices.push("ambivalent");
     console.log(choices, nr);
-    subject.innerHTML = subjects[nr].title;
-    statement.innerHTML = subjects[nr].statement;
+
+    results();
 
 });
 
 function results(){
-	subject.innerHTML = "Dit zijn je resultaten:";
-	var resultTxt = "";
-		statement.innerHTML = "";
-	for (i = 0; i < scores.length; i++) { 
-    	resultTxt += scores[i].name + "-" + scores[i].points + "<br>";
-	}
-	scoreResults.innerHTML = resultTxt;
+    text = "<ul>";
 
+    if (nr == subjects.length) { 
+        subject.innerHTML = "Dit is je uitkomst:";
+        statement.innerHTML = "";
+        text = "<ul>";
+
+        for (i = 0; i < scores.length; i++) {
+            text += "<li>" + scores[i].name + "-" + scores[i].points + "</li>";
+        }
+
+        text += "</ul>";
+        document.getElementById("result").innerHTML = text;
+
+        var nxtBtn = document.getElementById('next').style.display = "none";
+        var agrBtn = document.getElementById('agree').style.display = "none";
+        var disBtn = document.getElementById('disagree').style.display = "none";
+        var midBtn = document.getElementById('midway').style.display = "none";
+        
+    }
 };
 
 
